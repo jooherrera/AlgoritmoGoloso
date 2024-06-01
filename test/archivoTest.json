@@ -1,0 +1,7 @@
+{
+	"vertices": [
+		{ "id": 1, "peso": 1, "latitud": 1, "longitud": 1 },
+		{ "id": 2, "peso": 2, "latitud": 2, "longitud": 2 }
+	],
+	"aristas": [{ "vertice1": 1, "vertice2": 2 }]
+}
