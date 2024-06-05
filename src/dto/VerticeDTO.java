@@ -1,5 +1,7 @@
 package dto;
 
+import app.model.Vertice;
+
 public class VerticeDTO {
 	
 	private int _id;
@@ -7,23 +9,23 @@ public class VerticeDTO {
 	private double _latitud;
 	private double _longitud;
 		
-	public VerticeDTO(int id, double peso, double latitud, double longitud) {
-		_id = id;
-		_peso = peso;
-		_latitud = latitud;
-		_longitud = longitud;
+	public VerticeDTO(Vertice v) {
+		_id = v.getId();
+		_peso = v.getPeso();
+		_latitud = v.getLatitud();
+		_longitud = v.getLongitud();
 	}
 	
-	public int get_id() {
+	public int getId() {
 		return _id;
 	}
-	public double get_peso() {
+	public double getPeso() {
 		return _peso;
 	}
-	public double get_latitud() {
+	public double getLatitud() {
 		return _latitud;
 	}
-	public double get_longitud() {
+	public double getLongitud() {
 		return _longitud;
 	}
 	

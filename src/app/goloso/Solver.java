@@ -26,6 +26,7 @@ public class Solver {
 			}
 		}
 		
+		ret.finalizarTemporizador();
 		return ret;
 	}
 	
