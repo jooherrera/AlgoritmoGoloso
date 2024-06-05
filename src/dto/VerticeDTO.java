@@ -1,4 +1,4 @@
-package app;
+package dto;
 
 public class VerticeDTO {
 
