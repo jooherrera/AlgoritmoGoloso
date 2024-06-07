@@ -11,9 +11,8 @@ public class CargadorDeDatos {
 		try {
 			return  mapper.readValue(new File(rutaArchivo), clazz);
 		} catch (IOException e) {
-			System.err.println("Error al cargar: " + clazz.getName() + " -> " + e.getMessage());
-	        System.exit(1); 
-	        return null;
+			throw new RuntimeException("Error al cargar: " + clazz.getName() + " -> " + e.getMessage());
+
 		}
 	}
 }
