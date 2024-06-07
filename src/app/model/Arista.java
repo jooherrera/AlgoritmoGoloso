@@ -12,7 +12,7 @@ public class Arista {
 	
 	public Arista() {}
 	
-	private Arista(int v1, int v2) {
+	public Arista(int v1, int v2) {
 		assertVertice(v1);
 		assertVertice(v2);
 		_vertice1 = v1;

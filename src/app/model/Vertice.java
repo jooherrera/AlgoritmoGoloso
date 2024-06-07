@@ -8,7 +8,7 @@ public class Vertice {
 	
 	public Vertice() {};
 
-	private Vertice(int id, double peso, double latitud, double longitud) {
+	public Vertice(int id, double peso, double latitud, double longitud) {
 		assertVertice(id);
 		assertPeso(peso);
 		_id = id;
