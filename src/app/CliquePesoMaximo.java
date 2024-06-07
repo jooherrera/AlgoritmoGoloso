@@ -28,6 +28,17 @@ public class CliquePesoMaximo {
 		cargarAristasEnGrafo();
 	}
 
+	public SolucionDTO resolverMejor() {
+		SolucionDTO solucionPeso = resolverPorPeso();
+		SolucionDTO solucionGrado = resolverPorGrado();
+		
+		if (solucionPeso.getPeso() >= solucionGrado.getPeso()) {
+			return solucionPeso;
+		}
+		
+		return solucionGrado;
+	}
+	
 	public SolucionDTO resolverPorPeso() {
 		assertArchivoCargado();
 		return resolver((v1, v2) -> compararPorPeso(v1, v2));
