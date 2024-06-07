@@ -25,6 +25,7 @@ public class Main extends JFrame {
 	private JButton _btnResolverPorPeso;
 	private JButton _btnMostrarGrafo;
 	private JButton _btnResolverPorGrado;
+	private JButton _btnResolverMejor;
 	private MapWindow _mapWindow = null; // Referencia a NewWindow
 	private CliquePesoMaximo _heuristica;
 
@@ -52,6 +53,7 @@ public class Main extends JFrame {
 		btnMostrarGrafo();
 		btnResolverPorPeso();
 		btnResolverPorGrado();
+		btnResolverMejor();
 	}
 
 	private void cargarMain() {
@@ -123,6 +125,7 @@ public class Main extends JFrame {
 	private void habilitarBotones() {
 		_btnResolverPorPeso.setEnabled(true);
 		_btnResolverPorGrado.setEnabled(true);
+		_btnResolverMejor.setEnabled(true);
 		_btnMostrarGrafo.setEnabled(true);
 	}
 
@@ -149,11 +152,28 @@ public class Main extends JFrame {
 		}
 
 	}
+	
+	private void btnResolverMejor() {
+		_btnResolverMejor= new JButton("Mejor");
+		_btnResolverMejor.addActionListener(x -> resolverMejor());
+		_btnResolverMejor.setBounds(188, 152, 70, 27);
+		_btnResolverMejor.setEnabled(false);
+		contentPane.add(_btnResolverMejor);
+	}
+
+	private void resolverMejor() {
+		try {
+			SolucionDTO solucion = _heuristica.resolverMejor();
+			mostrarSolucion(solucion);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	private void btnResolverPorPeso() {
 		_btnResolverPorPeso = new JButton("Peso");
 		_btnResolverPorPeso.addActionListener(x -> resolverPorPeso());
-		_btnResolverPorPeso.setBounds(24, 152, 62, 27);
+		_btnResolverPorPeso.setBounds(24, 152, 70, 27);
 		_btnResolverPorPeso.setEnabled(false);
 		contentPane.add(_btnResolverPorPeso);
 	}
@@ -170,7 +190,7 @@ public class Main extends JFrame {
 	private void btnResolverPorGrado() {
 		_btnResolverPorGrado = new JButton("Grado");
 		_btnResolverPorGrado.addActionListener(x -> resolverPorGrado());
-		_btnResolverPorGrado.setBounds(98, 152, 70, 27);
+		_btnResolverPorGrado.setBounds(106, 152, 70, 27);
 		_btnResolverPorGrado.setEnabled(false);
 		contentPane.add(_btnResolverPorGrado);
 	}
