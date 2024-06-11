@@ -16,49 +16,54 @@ import java.util.List;
 
 public class CliquePesoMaximoTest {
 
-    private CliquePesoMaximo cliquePesoMaximo;
-    private String archivo = "test/archivoTest.json";
+	private CliquePesoMaximo cliquePesoMaximo;
 
-    @Before
-    public void setUp() throws IOException {
-        String textoArchivoTest = "{\n" +
-                "\t\"vertices\": [\n" +
-                "\t\t{ \"id\": 1, \"peso\": 1, \"latitud\": 1, \"longitud\": 1 },\n" +
-                "\t\t{ \"id\": 2, \"peso\": 2, \"latitud\": 2, \"longitud\": 2 }\n" +
-                "\t],\n" +
-                "\t\"aristas\": [{ \"vertice1\": 1, \"vertice2\": 2 }]\n" +
-                "}";
-        
-        File archivoTest = new File(archivo);
-        if (!archivoTest.exists()) {
-        	archivoTest.createNewFile();
-        }
-        try (FileWriter writer = new FileWriter(archivoTest)) {
-            writer.write(textoArchivoTest);
-        }
+	@Before
+	public void algoritmoCargadoConJson() {
+		String filePath = "./test/archivoTestGrado.json";
+		cliquePesoMaximo = new CliquePesoMaximo();
+		cliquePesoMaximo.cargarArchivo(filePath);
+	}
 
-        cliquePesoMaximo = new CliquePesoMaximo();
-        cliquePesoMaximo.cargarArchivo(archivoTest.getAbsolutePath());
-    }
+	@Test
+	public void testCargarArchivo() {
+		GrafoDTO grafoDTO = cliquePesoMaximo.obtenerGrafoCargado();
+		assertNotNull(grafoDTO);
+		assertEquals(5, grafoDTO.getVertices().size());
+		assertEquals(4, grafoDTO.getAristas().size());
+	}
 
-    @Test
-    public void testCargarArchivo() {
-        GrafoDTO grafoDTO = cliquePesoMaximo.obtenerGrafoCargado();
-        assertNotNull(grafoDTO);
-        assertEquals(2, grafoDTO.getVertices().size());
-        assertEquals(1, grafoDTO.getAristas().size());
-    }
-    
-    @Test(expected = RuntimeException.class)
-    public void testCargarArchivoInexistente() {
-        CliquePesoMaximo cpm = new CliquePesoMaximo();
-        cpm.cargarArchivo("archivo_inexistente.json");
-    }
-    
-    @Test(expected = RuntimeException.class)
-    public void testResolverPorPesoSinArchivo() {
-        CliquePesoMaximo cliquePesoMaximoSinCargar = new CliquePesoMaximo();
-        cliquePesoMaximoSinCargar.resolverPorPeso();
-    }
+	@Test(expected = RuntimeException.class)
+	public void testCargarArchivoInexistente() {
+		CliquePesoMaximo cpm = new CliquePesoMaximo();
+		cpm.cargarArchivo("archivo_inexistente.json");
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void testResolverPorPesoSinArchivo() {
+		CliquePesoMaximo cliquePesoMaximoSinCargar = new CliquePesoMaximo();
+		cliquePesoMaximoSinCargar.resolverPorPeso();
+	}
+
+	@Test
+	public void resolverPesoTest() {
+		SolucionDTO result = cliquePesoMaximo.resolverPorPeso();
+
+		assertEquals(result.getPeso(), 7.0, 0);
+	}
+
+	@Test
+	public void resolverGradoTest() {
+		SolucionDTO result = cliquePesoMaximo.resolverPorGrado();
+
+		assertEquals(result.getPeso(), 3.0, 0);
+	}
+
+	@Test
+	public void resolverMejorTest() {
+		SolucionDTO result = cliquePesoMaximo.resolverMejor();
+
+		assertEquals(result.getPeso(), 7.0, 0);
+	}
 
 }

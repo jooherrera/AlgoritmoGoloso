@@ -32,9 +32,17 @@ public class CliquePesoMaximo {
 		SolucionDTO solucionPeso = resolverPorPeso();
 		SolucionDTO solucionGrado = resolverPorGrado();
 		
-		if (solucionPeso.getPeso() >= solucionGrado.getPeso()) {
+		if (solucionPeso.getPeso() > solucionGrado.getPeso()) {
 			return solucionPeso;
 		}
+		
+		if (solucionGrado.getPeso() > solucionPeso.getPeso()) {
+			return solucionGrado;
+		}
+		
+        if (solucionPeso.getTiempo() < solucionGrado.getTiempo()) {
+            return solucionPeso;
+        }    
 		
 		return solucionGrado;
 	}
