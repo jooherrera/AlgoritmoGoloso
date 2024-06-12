@@ -157,8 +157,8 @@ public class MapWindow {
 		for (VerticeDTO vertice : vertices) {
 			if (_marcas.containsKey(vertice.getId())) {
 				MapMarker marca = _marcas.get(vertice.getId());
-				marca.getStyle().setBackColor(Color.blue);
-				marca.getStyle().setColor(Color.blue);
+				marca.getStyle().setBackColor(Color.green);
+				marca.getStyle().setColor(Color.green);
 			}
 		}
 		_mapa.repaint();
